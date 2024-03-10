@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -42,4 +43,33 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    /**
+     * Define user roles.
+     *
+     * @var array<string>
+     */
+
+    public const ROLES = [
+        'user',
+        'admin',
+    ];
+
+
+    //This function establishes a one-to-many relationship between the User model and the Product model, indicating that a user can have many products.
+    //due to this we can do $products = $user->products; whcih will fetch product associated with user 
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+    /**
+     * Check if the user has a specific role.
+     *
+     * @param  string  $role
+     * @return bool
+     */
+    public function hasRole(string $role): bool
+    {
+        return $this->role === $role;
+    }
 }

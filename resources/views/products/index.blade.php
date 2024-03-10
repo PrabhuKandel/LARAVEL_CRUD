@@ -5,6 +5,11 @@
     <div class="text-right">
       <a href="products/create" class="btn btn-dark mt-2 ">New Product</a>
     </div>
+    @if($products->isEmpty())
+    <div class="border text-primary  pt-2 text-center ">
+    <p class="font-weight-bold display-5">Product not added </p>
+    </div>
+    @else
       <table class="table table-hover mt-2">
         <thead>
           <tr>
@@ -44,6 +49,7 @@
 
 
       </table>
+      @endif
 
       {{ $products->links()}}
   </div>

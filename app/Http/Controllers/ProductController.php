@@ -4,12 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
     public function index() {
+        //Get the ID of the currently authenticated user
+        $userId = Auth::id();
 
-        return view('products.index',['products'=>Product::latest()->paginate(5)]);
+        // Fetch products associated with the authenticated user
+        $products = Product::where('user_id', $userId)->latest()->paginate(5);
+    
+        return view('products.index', ['products' => $products]);
+
+       
     }
 
     public function create()
@@ -39,6 +47,7 @@ class ProductController extends Controller
         $product->name =  $request->name;
         $product->price = $request->price;
         $product->description = $request->description;
+        $product->user_id = auth()->id();
         $product->save(); 
         return back()->withSuccess('Product Created !!!!');
     }
@@ -82,6 +91,12 @@ class ProductController extends Controller
     {
 
         $product = Product::where('id',$id)->first();
+        $imagePath = public_path('products') . '/' . $product->image;
+        if (file_exists($imagePath)) {
+            unlink($imagePath);
+            // Optionally, you can also remove the directory if it becomes empty after the image deletion
+            // rmdir(dirname($imagePath));
+        }
         $product->delete();
         return back()->withSuccess('Product deleted!!!!!');
     }

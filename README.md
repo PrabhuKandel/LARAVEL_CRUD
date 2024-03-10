@@ -1,13 +1,13 @@
-# Laravel CRUD Project
+# Product Management System
 
-This project is a simple web application developed using Laravel and MySQL, implementing CRUD (Create, Read, Update, Delete) functionality for managing products. Users can add, edit, delete, and view products through a user-friendly interface.
+This project is a simple web application developed using Laravel and MySQL, implementing CRUD (Create, Read, Update, Delete) functionality for managing products. It includes multi-authentication for users and admins, where admins have additional privileges like deleting users and products.
 
 ## Features
 
--   **Create**: Allows users to add new products with details such as name,image, description, price, etc.
+-   **Create**: Allows users to add new products with details such as name, image, description, price, etc.
 -   **Read**: Provides a view to display all existing products with their respective details.
 -   **Update**: Enables users to edit the details of existing products.
--   **Delete**: Allows users to remove products from the system.
+-   **Delete**: Allows users to remove products from the system. Admins can also delete users and products.
 
 ## Technologies Used
 
@@ -20,5 +20,5 @@ This project is a simple web application developed using Laravel and MySQL, impl
 1. **Clone the Repository**:
 
 ```bash
-git clone https://github.com/PrabhuKandel/LARAVEL_CRUD.git
+git clone https://github.com/PrabhuKandel/Product_Management_System.git
 ```
